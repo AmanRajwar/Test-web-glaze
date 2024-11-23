@@ -17,7 +17,7 @@ import apiClient from "@/lib/apiClient.js"
 import { LOGIN_ROUTE } from "@/utils/constants.js"
 import { setUser } from "@/redux/features/userSlice.js"
 import { useNavigate } from "react-router-dom"
-import { useEffect } from "react"
+
 
 const formSchema = z.object({
     email: z.string().min(7),

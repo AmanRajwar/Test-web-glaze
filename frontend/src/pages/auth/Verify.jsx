@@ -9,9 +9,13 @@ import {
 } from "@/components/ui/input-otp"
 import { ACTIVATE_ACCOUNT_ROUTE } from "@/utils/constants"
 import apiClient from "@/lib/apiClient"
-
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { setUser } from "@/redux/features/userSlice"
 const Verify = () => {
     const [value, setValue] = React.useState("")
+    const navigate = useNavigate; 
+    const dispatch =useDispatch()
     const verifyOtp = async (otp) => {
         try {
             const response = await apiClient.post(ACTIVATE_ACCOUNT_ROUTE, {
@@ -21,7 +25,10 @@ const Verify = () => {
             dispatch(setUser(user));
             if (user.role === 'admin') {
                 navigate('/admin')
+            }else if (user.role ==='user' ){
+                navigate('/user')
             }
+            navigate('/auth')
 
         } catch (error) {
             // add toast
